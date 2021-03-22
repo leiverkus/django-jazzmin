@@ -5,14 +5,20 @@ from django.contrib.auth.models import User
 from django.utils.html import format_html
 from django.utils.timesince import timesince
 from import_export.admin import ImportExportMixin
+from treebeard.admin import TreeAdmin
+from treebeard.forms import movenodeform_factory
 
-from .models import Book, Author, Genre
+from .models import Book, Author, Genre, Category
 from .resources import BookResource
 
 from ..loans.admin import BookLoanInline
 
 admin.site.unregister(User)
 
+class CategoryAdmin(TreeAdmin):
+    form = movenodeform_factory(Category)
+
+admin.site.register(Category, CategoryAdmin)
 
 class BooksInline(admin.TabularInline):
     model = Book

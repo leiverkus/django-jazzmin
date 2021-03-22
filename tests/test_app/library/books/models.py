@@ -1,6 +1,16 @@
 from django.db import models
 from django.urls import reverse
 
+from treebeard.mp_tree import MP_Node
+
+class Category(MP_Node):
+    name = models.CharField(max_length=30)
+
+    node_order_by = ['name']
+
+    def __str__(self):
+        return 'Category: {}'.format(self.name)
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=200, help_text="Enter a book genre (e.g. Science Fiction)")
