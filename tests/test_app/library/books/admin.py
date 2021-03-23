@@ -31,7 +31,6 @@ class BookAdmin(AdminAdvancedFiltersMixin, ImportExportMixin, admin.ModelAdmin):
     readonly_fields = ("__str__",)
     list_display_links = ()
     list_filter = ("author", "genre")
-    advanced_filter_fields = ("author", "genre")
     list_select_related = False
     list_per_page = 20
     list_max_show_all = 100
@@ -43,6 +42,7 @@ class BookAdmin(AdminAdvancedFiltersMixin, ImportExportMixin, admin.ModelAdmin):
     save_as_continue = True
     save_on_top = True
     preserve_filters = True
+    advanced_filter_fields = ("title", ("author__last_name", "Author Last Name"), ("author__first_name", "Author First Name"), ("genre__name", "Genre"), "summary", "isbn")
     inlines = (BookLoanInline,)
 
     actions = []
