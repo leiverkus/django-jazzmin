@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "import_export",
+    "advanced_filters",
     # Our apps
     "{}library.books.apps.BooksConfig".format(PREFIX),
     "{}library.loans.apps.LoansConfig".format(PREFIX),

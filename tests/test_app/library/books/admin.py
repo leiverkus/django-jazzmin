@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.utils.html import format_html
 from django.utils.timesince import timesince
 from import_export.admin import ImportExportMixin
+from advanced_filters.admin import AdminAdvancedFiltersMixin
 
 from .models import Book, Author, Genre
 from .resources import BookResource
@@ -19,7 +20,7 @@ class BooksInline(admin.TabularInline):
 
 
 @admin.register(Book)
-class BookAdmin(ImportExportMixin, admin.ModelAdmin):
+class BookAdmin(AdminAdvancedFiltersMixin, ImportExportMixin, admin.ModelAdmin):
     resource_class = BookResource
     fieldsets = (
         ("general", {"fields": ("title", "author", "library")}),
@@ -30,6 +31,7 @@ class BookAdmin(ImportExportMixin, admin.ModelAdmin):
     readonly_fields = ("__str__",)
     list_display_links = ()
     list_filter = ("author", "genre")
+    advanced_filter_fields = ("author", "genre")
     list_select_related = False
     list_per_page = 20
     list_max_show_all = 100

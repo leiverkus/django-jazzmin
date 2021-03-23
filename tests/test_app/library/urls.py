@@ -25,6 +25,7 @@ urlpatterns = [
     url(r"^$", RedirectView.as_view(pattern_name="admin:index", permanent=False)),
     url(r"admin/doc/", include("django.contrib.admindocs.urls")),
     url(r"make_messages/", make_messages, name="make_messages"),
+    url(r"^advanced_filters/", include("advanced_filters.urls")),
     path("i18n/", include("django.conf.urls.i18n")),
 ]
 
